@@ -4,13 +4,13 @@
 void swap_node_high(listint_t **list, listint_t **end, listint_t **shiver);
 void swap_node_low(listint_t **list, listint_t **end, listint_t **shiver);
 void cocktail_sort_list(listint_t **list);
-
 /**
- * swap_node_high - Define swapping node with listint_t doubly-linked list
- *                   and list integers of the node high.
- * @list: A pointer to the head of a doubly-linked list.
- * @end: A pointer to the tail of the doubly-linked list.
- * @shiver: A pointer to the current swapping node using the cocktail algorithm.
+ * swap_node_high - Swaps two adjacent nodes in the list when the current node
+ *                  has a greater value than the next node.
+ *
+ * @list: Pointer to the pointer to the head of the list.
+ * @end: Pointer to the pointer to the end of the list.
+ * @shiver: Pointer to the pointer to the current node.
  */
 void swap_node_high(listint_t **list, listint_t **end, listint_t **shiver)
 {
@@ -31,11 +31,12 @@ void swap_node_high(listint_t **list, listint_t **end, listint_t **shiver)
 	*shiver = tmp;
 }
 /**
- * swap_node_low - Define Swapping node of listint_t doubly-linked
- *                   of list of integers with the node low.
- * @list: A pointer to the head of doubly-linked lists.
- * @end: A pointer to the tail of doubly-linked list.
- * @shiver: A pointer current swapping node  using the cocktail algorithm.
+ * swap_node_low - Swaps two adjacent nodes in the list when the current node
+ *                 has a smaller value than the previous node.
+ *
+ * @list: Pointer to the pointer to the head of the list.
+ * @end: Pointer to the pointer to the end of the list.
+ * @shiver: Pointer to the pointer to the current node.
  */
 void swap_node_low(listint_t **list, listint_t **end, listint_t **shiver)
 {
@@ -56,9 +57,10 @@ void swap_node_low(listint_t **list, listint_t **end, listint_t **shiver)
 	*shiver = tmp;
 }
 /**
- * cocktail_sort_list - Sorting listint_t doubly-linked list of integers in
- *                      ascending order.
- * @list: A pointer to the head of listint_t doubly-linked list.
+ * cocktail_sort_list - Sorts a doubly linked list of integers in non-decreasing order
+ *                      using the Cocktail Shaker Sort algorithm.
+ *
+ * @list: Pointer to the pointer to the head of the list.
  */
 void cocktail_sort_list(listint_t **list)
 {

@@ -2,7 +2,7 @@
 
 /**
  * max_sort - find maximum value in array of integers.
- * @array: Array of integers.
+ * @array:pointer to array of integers.
  * @size: Size of the array.
  *
  * Return: The maximum integer in the array.

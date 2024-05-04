@@ -40,7 +40,7 @@ void counting_sort(int *array, size_t size)
     sorted = (int *)malloc(sizeof(int) * size);
     if (sorted == NULL)
         return;
-    maximum = fetch_max(array, size);
+    int maximum = fetch_max(array, size);
     countin = (int *)malloc(sizeof(int) * (maximum + 1));
     if (countin == NULL)
     {

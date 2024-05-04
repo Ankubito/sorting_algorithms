@@ -1,24 +1,23 @@
 #include "sort.h"
 
 /**
- * fetch_max - find maximum value in array of integers.
+ * max_sort - find maximum value in array of integers.
+ * @array: Array of integers.
+ * @size: Size of the array.
  *
- * @array: Pointer to an array of integers.
- * @size: Size of the array
- *
- * Return: Maximum num of integers
+ * Return: The maximum integer in the array.
  */
-int fetch_max(int *array, int size)
+int max_sort(int *array, int size)
 {
-	int maximum, b;
+        int supreme, b;
 
-	for (maximum = array[0], b = 1; b < size; b++)
-	{
-		if (array[b] > maximum)
-			maximum = array[b];
-	}
+        for (supreme = array[0], b = 1; b < size; b++)
+        {
+                if (array[b] > supreme)
+                        supreme = array[b];
+        }
 
-	return (maximum);
+        return (supreme);
 }
 
 /**
@@ -31,39 +30,38 @@ int fetch_max(int *array, int size)
  */
 void counting_sort(int *array, size_t size)
 {
-	int *countin, *sorted, maximum, a;
+        int *num, *sorted, supreme, a;
 
-	if (array == NULL || size < 2)
-		return;
+        if (array == NULL || size < 2)
+                return;
+        sorted = malloc(sizeof(int) * size);
+        if (sorted == NULL)
+                return;
+        supreme = max_sort(array, size);
+        num = malloc(sizeof(int) * (supreme + 1));
+        if (num == NULL)
+        {
+                free(sorted);
+                return;
+        }
 
-	sorted = malloc(sizeof(int) * size);
-	if (sorted == NULL)
-		return;
-	maximum = fetch_max(array, size);
-	countin = malloc(sizeof(int) * (maximum + 1));
-	if (countin == NULL)
-	{
-		free(sorted);
-		return;
-	}
+        for (a = 0; a < (supreme + 1); a++)
+                num[a] = 0;
+        for (a = 0; a < (int)size; a++)
+                num[array[a]] += 1;
+        for (a = 1; a < (supreme + 1); a++)
+                num[a] += num[a - 1];
+        print_array(num, supreme + 1);
 
-	for (a = 0; a < (maximum + 1); a++)
-		countin[a] = 0;
-	for (a = 0; a < (int)size; a++)
-		countin[array[a]] += 1;
-	for (a = 0; a < (maximum + 1); a++)
-		countin[a] += countin[a - 1];
-	print_array(countin, maximum + 1);
+        for (a = 0; a < (int)size; a++)
+        {
+                sorted[num[array[a]] - 1] = array[a];
+                num[array[a]] -= 1;
+        }
 
-	for (a = 0; a < (int)size; a++)
-	{
-		sorted[countin[array[a]] - 1] = array[a];
-		countin[array[a]] -= 1;
-	}
+        for (a = 0; a < (int)size; a++)
+                array[a] = sorted[a];
 
-	for (a = 0; a < (int)size; a++)
-		array[a] = sorted[a];
-
-	free(sorted);
-	free(countin);
+        free(sorted);
+        free(num);
 }

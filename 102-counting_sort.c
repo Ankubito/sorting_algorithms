@@ -2,7 +2,7 @@
 
 /**
  * max_sort - find maximum value in array of integers.
- * @array:pointer to array of integers.
+ * @array: Pointer to array of integers.
  * @size: Size of the array.
  *
  * Return: The maximum integer in the array.
@@ -50,7 +50,7 @@ void counting_sort(int *array, size_t size)
 		num[a] = 0;
 	for (a = 0; a < (int)size; a++)
 		num[array[a]] += 1;
-	for (a = 1; a < (supreme + 1); a++)
+	for (a = 0; a < (supreme + 1); a++)
 		num[a] += num[a - 1];
 	print_array(num, supreme + 1);
 
